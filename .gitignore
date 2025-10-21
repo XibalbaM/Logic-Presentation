@@ -1,0 +1,6 @@
+__pycache__/*
+media
+slides
+test_assets
+*.html
+*.mp4
