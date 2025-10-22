@@ -1,5 +1,5 @@
 from manim import *
-from common import Colors, Durations
+from common import *
 
 class Basics(Scene):
     """
@@ -15,46 +15,43 @@ class Basics(Scene):
     #TODO construction ?
     def construct(self):
 
-        title = Text("Partie 1: Les bases", font_size=48, color=Colors.text)
-        self.play(Write(title), run_time=Durations.animations)
-        self.wait(Durations.pauses)
-        self.play(FadeOut(title, shift = UP * 3), run_time=Durations.animations)
+        # title = Text("Partie 1: Les bases", font_size=48, color=Colors.text)
+        # self.play(Write(title), run_time=Durations.animations)
+        # self.wait(Durations.pauses)
+        # self.play(FadeOut(title, shift = UP * 3), run_time=Durations.animations)
 
         section_1_title = Text("Propositions et connecteurs", font_size=36, color=Colors.text).move_to(UP * 3)
         self.play(Write(section_1_title), run_time=Durations.animations)
         definition_subtitle = Text("Définitions", font_size=32, color=Colors.text).next_to(section_1_title, DOWN)
         examples_subtitle = Text("Exemples", font_size=32, color=Colors.text).next_to(section_1_title, DOWN)
         subtitle = definition_subtitle.copy()
-        self.play(Write(subtitle), run_time=Durations.animations)
-        self.wait(Durations.pauses)
-        self.section_1_definitions()
-        self.play(Transform(subtitle, examples_subtitle), run_time=Durations.animations)
-        self.wait(Durations.pauses)
-        self.section_1_examples()
+        # self.play(Write(subtitle), run_time=Durations.animations)
+        # self.wait(Durations.pauses)
+        # self.section_1_definitions()
+        # self.play(Transform(subtitle, examples_subtitle), run_time=Durations.animations)
+        # self.wait(Durations.pauses)
+        # self.section_1_examples()
 
-        section_2_title = Text("L'égalité", font_size=36, color=Colors.text).move_to(UP * 3)
-        self.play(Transform(section_1_title, section_2_title), Transform(subtitle, definition_subtitle), run_time=Durations.animations)
-        self.wait(Durations.pauses)
+        # section_2_title = Text("L'égalité", font_size=36, color=Colors.text).move_to(UP * 3)
+        # self.play(Transform(section_1_title, section_2_title), Transform(subtitle, definition_subtitle), run_time=Durations.animations)
+        # self.wait(Durations.pauses)
         right_cheatSheet = self.section_2_definitions()
-        self.play(Transform(subtitle, examples_subtitle), run_time=Durations.animations)
-        self.wait(Durations.pauses)
-        self.section_2_examples()
+        # self.play(Transform(subtitle, examples_subtitle), run_time=Durations.animations)
+        # self.wait(Durations.pauses)
+        # self.section_2_examples()
 
         # section_3_title = Text("Tables de vérité", font_size=36, color=Colors.text).move_to(UP * 3)
-        # self.play(Transform(section_1_title, section_3_title), Transform(subtitle, definition_subtitle), run_time=Durations.animations)
+        # self.play(Transform(section_1_title, section_3_title), FadeOut(subtitle), run_time=Durations.animations)
         # self.wait(Durations.pauses)
-        # self.section_3_definitions()
-        # self.play(Transform(subtitle, examples_subtitle), run_time=Durations.animations)
-        # self.wait(Durations.pauses)
-        # self.section_3_examples()  
+        # self.section_3()
 
-        # section_4_title = Text("Implications et équivalences", font_size=36, color=Colors.text).move_to(UP * 3)
-        # self.play(Transform(section_1_title, section_4_title), Transform(subtitle, definition_subtitle), run_time=Durations.animations)
-        # self.wait(Durations.pauses)
-        # self.section_4_definitions()
-        # self.play(Transform(subtitle, examples_subtitle), run_time=Durations.animations)
-        # self.wait(Durations.pauses)
-        # self.section_4_examples()
+        section_4_title = Text("Implications", font_size=36, color=Colors.text).move_to(UP * 3)
+        self.play(Transform(section_1_title, section_4_title), Transform(subtitle, definition_subtitle), FadeIn(subtitle), run_time=Durations.animations)
+        self.wait(Durations.pauses)
+        self.section_4_definitions(right_cheatSheet)
+        self.play(Transform(subtitle, examples_subtitle), run_time=Durations.animations)
+        self.wait(Durations.pauses)
+        self.section_4_examples()
 
         # section_5_title = Text("Quantificateurs", font_size=36, color=Colors.text).move_to(UP * 3)
         # self.play(Transform(section_1_title, section_5_title), Transform(subtitle, definition_subtitle), run_time=Durations.animations)
@@ -199,7 +196,302 @@ class Basics(Scene):
         self.play(FadeOut(examples), run_time=Durations.animations)
         self.wait(Durations.pauses)
     
-    """
-    \\item $\\neg(P \\land Q)$
-    \\item $\\neg(P \\lor Q)$
-    """
+    def section_3(self):
+        table = Table(
+            [["$P$", "$Q$", "$\\neg P$", "$P \\land Q$", "$P \\lor Q$"],
+             ["V", "V", "F", "V", "V"],
+             ["V", "F", "F", "F", "V"],
+             ["F", "V", "V", "F", "V"],
+             ["F", "F", "V", "F", "F"]], 
+            include_outer_lines=True,
+            line_config={"stroke_color": Colors.text},
+            element_to_mobject=lambda x: Tex(x, font_size=28, color=ColorFromTruthValue(x))
+        ).scale(0.7)
+        self.play(Write(table), run_time=Durations.animations)
+        self.wait(Durations.pauses)
+        self.play(FadeOut(table), run_time=Durations.animations)
+        self.wait(Durations.pauses)
+        exercices = Tex("""\\begin{flushleft}
+            Deux exercices : simplifiez les expressions suivantes :
+            \\begin{itemize}
+            \\item $\\neg(P \\land Q)$
+            \\item $\\neg(P \\lor Q)$
+            \\end{itemize}
+        \\end{flushleft}""", font_size=28, color=Colors.text)
+        self.play(Write(exercices), run_time=Durations.animations)
+        self.wait(Durations.pauses)
+        self.play(FadeOut(exercices), run_time=Durations.animations)
+        exercise_one_one = Table(
+            [["$P$", "$Q$", "$P \\land Q$", "$\\neg(P \\land Q)$", "?"],
+             ["V", "V", "?", "?", "?"],
+             ["V", "F", "?", "?", "?"],
+             ["F", "V", "?", "?", "?"],
+             ["F", "F", "?", "?", "?"]],
+            include_outer_lines=True,
+            line_config={"stroke_color": Colors.text},
+            element_to_mobject=lambda x: Tex(x, font_size=28, color=ColorFromTruthValue(x))
+        ).scale(0.7)
+        self.play(Write(exercise_one_one), run_time=Durations.animations)
+        self.wait(Durations.pauses)
+        exercices_one_two = Table(
+            [["$P$", "$Q$", "$P \\land Q$", "$\\neg(P \\land Q)$", "?"],
+             ["V", "V", "V", "?", "?"],
+             ["V", "F", "F", "?", "?"],
+             ["F", "V", "F", "?", "?"],
+             ["F", "F", "F", "?", "?"]],
+            include_outer_lines=True,
+            line_config={"stroke_color": Colors.text},
+            element_to_mobject=lambda x: Tex(x, font_size=28, color=ColorFromTruthValue(x))
+        ).scale(0.7)
+        self.play(Transform(exercise_one_one, exercices_one_two), run_time=Durations.animations)
+        self.wait(Durations.pauses)
+        exercices_one_three = Table(
+            [["$P$", "$Q$", "$P \\land Q$", "$\\neg(P \\land Q)$", "?"],
+             ["V", "V", "V", "F", "?"],
+             ["V", "F", "F", "V", "?"],
+             ["F", "V", "F", "V", "?"],
+             ["F", "F", "F", "V", "?"]],
+            include_outer_lines=True,
+            line_config={"stroke_color": Colors.text},
+            element_to_mobject=lambda x: Tex(x, font_size=28, color=ColorFromTruthValue(x))
+        ).scale(0.7)
+        self.play(Transform(exercise_one_one, exercices_one_three), run_time=Durations.animations)
+        self.wait(Durations.pauses)
+        exercices_one_solution = Table(
+            [["$P$", "$Q$", "$P \\land Q$", "$\\neg(P \\land Q)$", "$\\neg P \\lor \\neg Q$"],
+             ["V", "V", "V", "F", "F"],
+             ["V", "F", "F", "V", "V"],
+             ["F", "V", "F", "V", "V"],
+             ["F", "F", "F", "V", "V"]],
+            include_outer_lines=True,
+            line_config={"stroke_color": Colors.text},
+            element_to_mobject=lambda x: Tex(x, font_size=28, color=ColorFromTruthValue(x))
+        ).scale(0.7)
+        self.play(Transform(exercise_one_one, exercices_one_solution), run_time=Durations.animations)
+        self.wait(Durations.pauses)
+        exercise_two_one = Table(
+            [["$P$", "$Q$", "$P \\lor Q$", "$\\neg(P \\lor Q)$", "?"],
+             ["V", "V", "?", "?", "?"],
+             ["V", "F", "?", "?", "?"],
+             ["F", "V", "?", "?", "?"],
+             ["F", "F", "?", "?", "?"]],
+            include_outer_lines=True,
+            line_config={"stroke_color": Colors.text},
+            element_to_mobject=lambda x: Tex(x, font_size=28, color=ColorFromTruthValue(x))
+        ).scale(0.7)
+        self.play(Transform(exercise_one_one, exercise_two_one), run_time=Durations.animations)
+        self.wait(Durations.pauses)
+        exercices_two_two = Table(
+            [["$P$", "$Q$", "$P \\lor Q$", "$\\neg(P \\lor Q)$", "?"],
+             ["V", "V", "V", "?", "?"],
+             ["V", "F", "V", "?", "?"],
+             ["F", "V", "V", "?", "?"],
+             ["F", "F", "F", "?", "?"]],
+            include_outer_lines=True,
+            line_config={"stroke_color": Colors.text},
+            element_to_mobject=lambda x: Tex(x, font_size=28, color=ColorFromTruthValue(x))
+        ).scale(0.7)
+        self.play(Transform(exercise_one_one, exercices_two_two), run_time=Durations.animations)
+        self.wait(Durations.pauses)
+        exercices_two_three = Table(
+            [["$P$", "$Q$", "$P \\lor Q$", "$\\neg(P \\lor Q)$", "?"],
+             ["V", "V", "V", "F", "?"],
+             ["V", "F", "V", "F", "?"],
+             ["F", "V", "V", "F", "?"],
+             ["F", "F", "F", "V", "?"]],
+            include_outer_lines=True,
+            line_config={"stroke_color": Colors.text},
+            element_to_mobject=lambda x: Tex(x, font_size=28, color=ColorFromTruthValue(x))
+        ).scale(0.7)
+        self.play(Transform(exercise_one_one, exercices_two_three), run_time=Durations.animations)
+        self.wait(Durations.pauses)
+        exercices_two_solution = Table(
+            [["$P$", "$Q$", "$P \\lor Q$", "$\\neg(P \\lor Q)$", "$\\neg P \\land \\neg Q$"],
+             ["V", "V", "V", "F", "F"],
+             ["V", "F", "V", "F", "F"],
+             ["F", "V", "V", "F", "F"],
+             ["F", "F", "F", "V", "V"]],
+            include_outer_lines=True,
+            line_config={"stroke_color": Colors.text},
+            element_to_mobject=lambda x: Tex(x, font_size=28, color=ColorFromTruthValue(x))
+        ).scale(0.7)
+        self.play(Transform(exercise_one_one, exercices_two_solution), run_time=Durations.animations)
+        self.wait(Durations.pauses)
+        self.play(FadeOut(exercise_one_one), run_time=Durations.animations)
+        self.wait(Durations.pauses)
+
+    def section_4_definitions(self, right_cheatSheet):
+        definitions = [
+            "Implication : L'implication entre deux propositions $P$ et $Q$, notée $P \\implies Q$, est vraie si et seulement si soit $P$ est fausse, soit $Q$ est vraie (ou les deux).",
+            "Nouvelle définition de l'équivalence : Deux propositions $P$ et $Q$ sont équivalentes, notées $P \\iff Q$, si les deux implications $P \\implies Q$ et $Q \\implies P$ sont vraies."
+        ]
+        definition_texts = VGroup(*[Tex("\\begin{flushleft}" + defn + "\\end{flushleft}", font_size=28, color=Colors.text) for defn in definitions])
+        definition_texts.arrange(DOWN, aligned_edge=LEFT)
+        for defn_text in definition_texts:
+            self.play(Write(defn_text), run_time=Durations.animations)
+            self.wait(Durations.pauses)
+        newCheatSheetElements = [
+            "Implication : $P \\implies Q$"
+        ]
+        (oldCheatSheet, oldCheatSheetBox) = right_cheatSheet
+        newCheatSheet_texts = VGroup(*[Tex("\\begin{flushleft}" + item + "\\end{flushleft}", font_size=28, color=Colors.text) for item in newCheatSheetElements])
+        newCheatSheet = oldCheatSheet.add(newCheatSheet_texts)
+        newCheatSheet.arrange(DOWN, aligned_edge=RIGHT).to_edge(UP + RIGHT)
+        self.play(Transform(definition_texts, newCheatSheet_texts), Transform(oldCheatSheetBox, SurroundingRectangle(newCheatSheet, buff=0.1, color=Colors.text)))
+        self.wait(Durations.pauses)
+
+    def section_4_examples(self):
+        # On construit la table de vérité de l'implication (ligne par ligne)
+        implication_one = Table(
+            [["$P$", "$Q$", "$P \\implies Q$"],
+             ["V", "V", "?"],
+             ["V", "F", "?"],
+             ["F", "V", "?"],
+             ["F", "F", "?"]],
+            include_outer_lines=True,
+            line_config={"stroke_color": Colors.text},
+            element_to_mobject=lambda x: Tex(x, font_size=28, color=ColorFromTruthValue(x))
+        ).scale(0.7)
+        self.play(Write(implication_one), run_time=Durations.animations)
+        self.wait(Durations.pauses)
+        implication_two = Table(
+            [["$P$", "$Q$", "$P \\implies Q$"],
+                ["V", "V", "V"],
+                ["V", "F", "?"],
+                ["F", "V", "?"],
+                ["F", "F", "?"]],
+            include_outer_lines=True,
+            line_config={"stroke_color": Colors.text},
+            element_to_mobject=lambda x: Tex(x, font_size=28, color=ColorFromTruthValue(x))
+        ).scale(0.7)
+        self.play(Transform(implication_one, implication_two), run_time=Durations.animations)
+        self.wait(Durations.pauses)
+        implication_three = Table(
+            [["$P$", "$Q$", "$P \\implies Q$"],
+                ["V", "V", "V"],
+                ["V", "F", "F"],
+                ["F", "V", "?"],
+                ["F", "F", "?"]],
+            include_outer_lines=True,
+            line_config={"stroke_color": Colors.text},
+            element_to_mobject=lambda x: Tex(x, font_size=28, color=ColorFromTruthValue(x))
+        ).scale(0.7)
+        self.play(Transform(implication_one, implication_three), run_time=Durations.animations)
+        self.wait(Durations.pauses)
+        implication_four = Table(
+            [["$P$", "$Q$", "$P \\implies Q$"],
+                ["V", "V", "V"],
+                ["V", "F", "F"],
+                ["F", "V", "V"],
+                ["F", "F", "?"]],
+            include_outer_lines=True,
+            line_config={"stroke_color": Colors.text},
+            element_to_mobject=lambda x: Tex(x, font_size=28, color=ColorFromTruthValue(x))
+        ).scale(0.7)
+        self.play(Transform(implication_one, implication_four), run_time=Durations.animations)
+        self.wait(Durations.pauses)
+        implication_five = Table(
+            [["$P$", "$Q$", "$P \\implies Q$"],
+                ["V", "V", "V"],
+                ["V", "F", "F"],
+                ["F", "V", "V"],
+                ["F", "F", "V"]],
+            include_outer_lines=True,
+            line_config={"stroke_color": Colors.text},
+            element_to_mobject=lambda x: Tex(x, font_size=28, color=ColorFromTruthValue(x))
+        ).scale(0.7)
+        self.play(Transform(implication_one, implication_five), run_time=Durations.animations)
+        self.wait(Durations.pauses)
+        # On remarque que l'implication est équivalente à ¬P ∨ Q
+        implication_six = Table(
+            [["$P$", "$Q$", "$P \\implies Q$", "$\\neg P \\lor Q$"],
+                ["V", "V", "V", "V"],
+                ["V", "F", "F", "F"],
+                ["F", "V", "V", "V"],
+                ["F", "F", "V", "V"]],
+            include_outer_lines=True,
+            line_config={"stroke_color": Colors.text},
+            element_to_mobject=lambda x: Tex(x, font_size=28, color=ColorFromTruthValue(x))
+        ).scale(0.7)
+        self.play(Transform(implication_one, implication_six), run_time=Durations.animations)
+        self.wait(Durations.pauses)
+        self.play(FadeOut(implication_one), run_time=Durations.animations)
+        self.wait(Durations.pauses)
+        # On montre que A \iff B \equiv (A \implies B) \land (B \implies A) (étape par étape)
+        iff_one = Table(
+            [["$A$", "$B$", "$A \\implies B$", "$B \\implies A$", "$A \\iff B$"],
+                ["V", "V", "?", "?", "?"],
+                ["V", "F", "?", "?", "?"],
+                ["F", "V", "?", "?", "?"],
+                ["F", "F", "?", "?", "?"]],
+            include_outer_lines=True,
+            line_config={"stroke_color": Colors.text},
+            element_to_mobject=lambda x: Tex(x, font_size=28, color=ColorFromTruthValue(x))
+        ).scale(0.7)
+        self.play(Write(iff_one), run_time=Durations.animations)
+        self.wait(Durations.pauses)
+        iff_two = Table(
+            [["$A$", "$B$", "$A \\implies B$", "$B \\implies A$", "$A \\iff B$"],
+                ["V", "V", "V", "V", "?"],
+                ["V", "F", "F", "V", "?"],
+                ["F", "V", "V", "F", "?"],
+                ["F", "F", "V", "V", "?"]],
+            include_outer_lines=True,
+            line_config={"stroke_color": Colors.text},
+            element_to_mobject=lambda x: Tex(x, font_size=28, color=ColorFromTruthValue(x))
+        ).scale(0.7)
+        self.play(Transform(iff_one, iff_two), run_time=Durations.animations)
+        self.wait(Durations.pauses)
+        iff_three = Table(
+            [["$A$", "$B$", "$A \\implies B$", "$B \\implies A$", "$A \\iff B$"],
+                ["V", "V", "V", "V", "V"],
+                ["V", "F", "F", "V", "F"],
+                ["F", "V", "V", "F", "F"],
+                ["F", "F", "V", "V", "V"]],
+            include_outer_lines=True,
+            line_config={"stroke_color": Colors.text},
+            element_to_mobject=lambda x: Tex(x, font_size=28, color=ColorFromTruthValue(x))
+        ).scale(0.7)
+        self.play(Transform(iff_one, iff_three), run_time=Durations.animations)
+        self.wait(Durations.pauses)
+        self.play(FadeOut(iff_one), run_time=Durations.animations)
+        self.wait(Durations.pauses)
+        # On montre que A \implies B \equiv \neg B \implies \neg A (étape par étape)
+        contrapositive_one = Table(
+            [["$A$", "$B$", "$A \\implies B$", "$\\neg B \\implies \\neg A$"],
+                ["V", "V", "?", "?"],
+                ["V", "F", "?", "?"],
+                ["F", "V", "?", "?"],
+                ["F", "F", "?", "?"]],
+            include_outer_lines=True,
+            line_config={"stroke_color": Colors.text},
+            element_to_mobject=lambda x: Tex(x, font_size=28, color=ColorFromTruthValue(x))
+        ).scale(0.7)
+        self.play(Write(contrapositive_one), run_time=Durations.animations)
+        self.wait(Durations.pauses)
+        contrapositive_two = Table(
+            [["$A$", "$B$", "$A \\implies B$", "$\\neg B \\implies \\neg A$"],
+                ["V", "V", "V", "?"],
+                ["V", "F", "F", "?"],
+                ["F", "V", "V", "?"],
+                ["F", "F", "V", "?"]],
+            include_outer_lines=True,
+            line_config={"stroke_color": Colors.text},
+            element_to_mobject=lambda x: Tex(x, font_size=28, color=ColorFromTruthValue(x))
+        ).scale(0.7)
+        self.play(Transform(contrapositive_one, contrapositive_two), run_time=Durations.animations)
+        self.wait(Durations.pauses)
+        contrapositive_three = Table(
+            [["$A$", "$B$", "$A \\implies B$", "$\\neg B \\implies \\neg A$"],
+                ["V", "V", "V", "V"],
+                ["V", "F", "F", "F"],
+                ["F", "V", "V", "V"],
+                ["F", "F", "V", "V"]],
+            include_outer_lines=True,
+            line_config={"stroke_color": Colors.text},
+            element_to_mobject=lambda x: Tex(x, font_size=28, color=ColorFromTruthValue(x))
+        ).scale(0.7)
+        self.play(Transform(contrapositive_one, contrapositive_three), run_time=Durations.animations)
+        self.wait(Durations.pauses)
+        self.play(FadeOut(contrapositive_one), run_time=Durations.animations)
+        self.wait(Durations.pauses)
