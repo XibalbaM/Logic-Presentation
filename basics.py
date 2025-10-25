@@ -7,43 +7,39 @@ class Basics(Scene):
     2. L'égalité
     3. Tables de vérité
     4. Implications et équivalences
-    5. Quantificateurs
-    6. Comment prouver ?
-    7. Quelques problèmes 
     """
-    #TODO predicates
-    #TODO construction ?
+    #TODO construction comme exercices
     def construct(self):
 
-        # title = Text("Partie 1: Les bases", font_size=48, color=Colors.text)
-        # self.play(Write(title), run_time=Durations.animations)
-        # self.wait(Durations.pauses)
-        # self.play(FadeOut(title, shift = UP * 3), run_time=Durations.animations)
+        title = Text("Partie 1: Les bases", font_size=48, color=Colors.text)
+        self.play(Write(title), run_time=Durations.animations)
+        self.wait(Durations.pauses)
+        self.play(FadeOut(title, shift = UP * 3), run_time=Durations.animations)
 
         section_1_title = Text("Propositions et connecteurs", font_size=36, color=Colors.text).move_to(UP * 3)
         self.play(Write(section_1_title), run_time=Durations.animations)
         definition_subtitle = Text("Définitions", font_size=32, color=Colors.text).next_to(section_1_title, DOWN)
         examples_subtitle = Text("Exemples", font_size=32, color=Colors.text).next_to(section_1_title, DOWN)
         subtitle = definition_subtitle.copy()
-        # self.play(Write(subtitle), run_time=Durations.animations)
-        # self.wait(Durations.pauses)
-        # self.section_1_definitions()
-        # self.play(Transform(subtitle, examples_subtitle), run_time=Durations.animations)
-        # self.wait(Durations.pauses)
-        # self.section_1_examples()
+        self.play(Write(subtitle), run_time=Durations.animations)
+        self.wait(Durations.pauses)
+        self.section_1_definitions()
+        self.play(Transform(subtitle, examples_subtitle), run_time=Durations.animations)
+        self.wait(Durations.pauses)
+        self.section_1_examples()
 
-        # section_2_title = Text("L'égalité", font_size=36, color=Colors.text).move_to(UP * 3)
-        # self.play(Transform(section_1_title, section_2_title), Transform(subtitle, definition_subtitle), run_time=Durations.animations)
-        # self.wait(Durations.pauses)
+        section_2_title = Text("L'égalité", font_size=36, color=Colors.text).move_to(UP * 3)
+        self.play(Transform(section_1_title, section_2_title), Transform(subtitle, definition_subtitle), run_time=Durations.animations)
+        self.wait(Durations.pauses)
         right_cheatSheet = self.section_2_definitions()
-        # self.play(Transform(subtitle, examples_subtitle), run_time=Durations.animations)
-        # self.wait(Durations.pauses)
-        # self.section_2_examples()
+        self.play(Transform(subtitle, examples_subtitle), run_time=Durations.animations)
+        self.wait(Durations.pauses)
+        self.section_2_examples()
 
-        # section_3_title = Text("Tables de vérité", font_size=36, color=Colors.text).move_to(UP * 3)
-        # self.play(Transform(section_1_title, section_3_title), FadeOut(subtitle), run_time=Durations.animations)
-        # self.wait(Durations.pauses)
-        # self.section_3()
+        section_3_title = Text("Tables de vérité", font_size=36, color=Colors.text).move_to(UP * 3)
+        self.play(Transform(section_1_title, section_3_title), FadeOut(subtitle), run_time=Durations.animations)
+        self.wait(Durations.pauses)
+        self.section_3()
 
         section_4_title = Text("Implications", font_size=36, color=Colors.text).move_to(UP * 3)
         self.play(Transform(section_1_title, section_4_title), Transform(subtitle, definition_subtitle), FadeIn(subtitle), run_time=Durations.animations)
@@ -52,24 +48,6 @@ class Basics(Scene):
         self.play(Transform(subtitle, examples_subtitle), run_time=Durations.animations)
         self.wait(Durations.pauses)
         self.section_4_examples()
-
-        # section_5_title = Text("Quantificateurs", font_size=36, color=Colors.text).move_to(UP * 3)
-        # self.play(Transform(section_1_title, section_5_title), Transform(subtitle, definition_subtitle), run_time=Durations.animations)
-        # self.wait(Durations.pauses)
-        # self.section_5_definitions()
-        # self.play(Transform(subtitle, examples_subtitle), run_time=Durations.animations)
-        # self.wait(Durations.pauses)
-        # self.section_5_examples()
-
-        # section_6_title = Text("Comment prouver ?", font_size=36, color=Colors.text).move_to(UP * 3)
-        # self.play(Transform(section_1_title, section_6_title), FadeOut(subtitle), run_time=Durations.animations)
-        # self.wait(Durations.pauses)
-        # self.section_6()
-
-        # section_7_title = Text("Quelques problèmes", font_size=36, color=Colors.text).move_to(UP * 3)
-        # self.play(Transform(section_1_title, section_7_title), run_time=Durations.animations)
-        # self.wait(Durations.pauses)
-        # self.section_7()
 
     def section_1_definitions(self):
         definitions = [

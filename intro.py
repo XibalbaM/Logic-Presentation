@@ -12,12 +12,13 @@ class Intro(Scene):
         self.play(FadeOut(subtitle), FadeOut(by))
         toc_title = Text("Table des matières", font_size=48, color=Colors.text).to_edge(UP)
         topics = [
-            "1. Les bases"
-            #Applications en maths
-            #Applications dans d'autres domaines
-            #Un peu d'histoire (logique intuitionniste, classique et moderne)
-            #Paradoxe de Banach-Tarski
-            #Théorème d'incomplétude de Gödel (démonstration ?)
+            "1. Les bases",
+            "2. Applications en maths",
+            "3. Applications dans d'autres domaines",
+            "4. Un peu d'histoire",
+            "5. Axiomes de la logique",
+            "6. Paradoxe de Banach-Tarski",
+            "7. Théorème d'incomplétude de Gödel"
         ]
         topic_texts = VGroup(*[Text(topic, font_size=32, color=Colors.text) for topic in topics])
         topic_texts.arrange(DOWN, aligned_edge=LEFT).next_to(toc_title, DOWN, buff=0.5)

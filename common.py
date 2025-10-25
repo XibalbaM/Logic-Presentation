@@ -9,8 +9,8 @@ Colors = SimpleNamespace(
 )
 
 Durations = SimpleNamespace(
-    animations=0.01,
-    pauses=0.02
+    animations=1,
+    pauses=2
 )
 
 def ColorFromTruthValue(value: str):
