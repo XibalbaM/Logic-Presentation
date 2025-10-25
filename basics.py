@@ -10,11 +10,7 @@ class Basics(Scene):
     """
     #TODO construction comme exercices
     def construct(self):
-
-        title = Text("Partie 1: Les bases", font_size=48, color=Colors.text)
-        self.play(Write(title), run_time=Durations.animations)
-        self.wait(Durations.pauses)
-        self.play(FadeOut(title, shift = UP * 3), run_time=Durations.animations)
+        intro(self, "Partie 1: Les bases")
 
         section_1_title = Text("Propositions et connecteurs", font_size=36, color=Colors.text).move_to(UP * 3)
         self.play(Write(section_1_title), run_time=Durations.animations)
