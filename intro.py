@@ -17,8 +17,7 @@ class Intro(Scene):
             "3. Applications dans d'autres domaines",
             "4. Quelques systèmes axiomatiques",
             "5. Un peu d'histoire",
-            "6. Paradoxe de Banach-Tarski",
-            "7. Théorème d'incomplétude de Gödel"
+            "6. Théorème d'incomplétude de Gödel"
         ]
         topic_texts = VGroup(*[Text(topic, font_size=32, color=Colors.text) for topic in topics])
         topic_texts.arrange(DOWN, aligned_edge=LEFT).next_to(toc_title, DOWN, buff=0.5)
