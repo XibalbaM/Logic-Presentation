@@ -185,7 +185,7 @@ class Maths(Scene):
         self.wait(2)
         induction_proof_proof = Tex("""
             \\begin{flushleft}
-            \\textbf{Preuve :} Soit $S = \\{ n \\in \\mathbb{N} \\mid P(n) \\text{ est fausse} \\}$. Si $S$ est non vide, alors il admet un plus petit élément $m$. Comme $m \\neq 0$, on a $m-1 \\in \\mathbb{N}$ et donc $P(m-1)$ est vraie. Par hypothèse, cela implique que $P(m)$ est vraie, ce qui est une contradiction. Donc $S$ est vide et $P(n)$ est vraie pour tout $n$.
+            \\textbf{Preuve :} Soit $S = \\{ n \\in \\mathbb{N} \\mid P(n) \\text{ est fausse} \\}$. Si $S$ est non vide, alors il admet un plus petit élément $m$ (par le principe de bien ordonnancement). Comme $m \\neq 0$, on a $m-1 \\in \\mathbb{N}$ et donc $P(m-1)$ est vraie. Par hypothèse, cela implique que $P(m)$ est vraie, ce qui est une contradiction. Donc $S$ est vide et $P(n)$ est vraie pour tout $n$.
             \\end{flushleft}
         """, font_size=28, color=Colors.text).next_to(induction_proof_principle, DOWN)
         self.play(Write(induction_proof_proof), run_time=Durations.animations)

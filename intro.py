@@ -15,8 +15,8 @@ class Intro(Scene):
             "1. Les bases",
             "2. Applications en maths",
             "3. Applications dans d'autres domaines",
-            "4. Un peu d'histoire",
-            "5. Axiomes de la logique",
+            "4. Quelques systèmes axiomatiques",
+            "5. Un peu d'histoire",
             "6. Paradoxe de Banach-Tarski",
             "7. Théorème d'incomplétude de Gödel"
         ]
