@@ -9,7 +9,5 @@ class History(Scene):
     6. Systemes axiomatiques
     """
     def construct(self):
-        title = Text("Un peu d'histoire de la logique", font_size=48, color=Colors.text)
-        self.play(FadeIn(title), run_time=Durations.animations)
-        self.wait(Durations.pauses)
-        self.play(FadeOut(title), run_time=Durations.animations)
+        intro(self, "Petite histoire de la logique")
+

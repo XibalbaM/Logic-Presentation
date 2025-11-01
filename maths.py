@@ -10,7 +10,7 @@ class Maths(Scene):
     #3. Fonctions ?
     """
     def construct(self):
-        # intro(self, "Partie 2: Applications en mathématiques")
+        intro(self, "Partie 2: Applications en mathématiques")
 
         section_1_title = Text("Quantificateurs", font_size=36, color=Colors.text).move_to(UP * 3)
         self.play(Write(section_1_title), run_time=Durations.animations)
@@ -18,16 +18,16 @@ class Maths(Scene):
         examples_subtitle = Text("Exemples", font_size=32, color=Colors.text).next_to(section_1_title, DOWN)
         subtitle = definition_subtitle.copy()
         self.play(Write(subtitle), run_time=Durations.animations)
-        # self.wait(Durations.pauses)
-        # cheatSheet = self.section_1_definitions()
-        # self.play(Transform(subtitle, examples_subtitle), run_time=Durations.animations)
-        # self.wait(Durations.pauses)
-        # self.section_1_examples(cheatSheet)
+        self.wait(Durations.pauses)
+        cheatSheet = self.section_1_definitions()
+        self.play(Transform(subtitle, examples_subtitle), run_time=Durations.animations)
+        self.wait(Durations.pauses)
+        self.section_1_examples(cheatSheet)
 
-        # section_2_title = Text("Types de preuves", font_size=36, color=Colors.text).move_to(UP * 3)
-        # self.play(Transform(section_1_title, section_2_title), FadeOut(subtitle), run_time=Durations.animations)
-        # self.wait(Durations.pauses)
-        # self.section_2(section_1_title)
+        section_2_title = Text("Types de preuves", font_size=36, color=Colors.text).move_to(UP * 3)
+        self.play(Transform(section_1_title, section_2_title), FadeOut(subtitle), run_time=Durations.animations)
+        self.wait(Durations.pauses)
+        self.section_2(section_1_title)
 
         # section_3_title = Text("Problèmes et exercices", font_size=36, color=Colors.text).move_to(UP * 3)
         # self.play(Transform(section_1_title, section_3_title), run_time=Durations.animations)
@@ -65,7 +65,7 @@ class Maths(Scene):
         examples = Tex("""
                    \\begin{itemize}
                     \\item $P(n)$ : "$n$ est pair"
-                    \\item $\\forall n \\in \\mathbb{N}, n > 0$
+                    \\item $\\forall n \\in \\mathbb{N}, n \\geq 0$
                     \\item $\\exists n \\in \\mathbb{Z}, P(n)$
                     \\item $\\exists! n \\in \\mathbb{N}, n = 0$
                    \\end{itemize}""",
@@ -90,7 +90,7 @@ class Maths(Scene):
                                \\item $P(f) \\equiv \\forall x \\in \\mathbb{R}, \\exists! y \\in \\mathbb{R}, f(x) = y$
                                \\item $Q(f) \\equiv \\exists! y \\in \\mathbb{R}, \\forall x \\in \\mathbb{R}, f(x) = y$
                                \\item $\\neg (\\forall x \\in I) \\equiv ?$
-                               \\item $\\neg (\\exists x \\in I) \\equiv ?$
+                               \\item $\\neg (\\exists x \\in I) \\equiv ?$ #TODO FIX
                         \\end{itemize}
                         \\end{flushleft}""",
                           font_size=28, color=Colors.text)
@@ -179,7 +179,7 @@ class Maths(Scene):
         induction_proof_principle = Tex("""
             \\begin{flushleft}
             \\textbf{Principe :} Si $P(0)$ est vraie et que $\\forall n \\in \\mathbb{N}, P(n) \\implies P(n+1)$, alors $\\forall n \\in \\mathbb{N}, P(n)$ est vraie. Mais pourquoi ça marche ?
-            \\end{flushleft}
+            \\end{flushleft} #TODO bullet points
         """, font_size=28, color=Colors.text).next_to(induction_proof_title, DOWN, buff=0.5)
         self.play(Write(induction_proof_principle), run_time=Durations.animations)
         self.wait(2)
@@ -234,7 +234,7 @@ class Maths(Scene):
                 \\item \\textbf{Analyse :} On suppose que $f$ satisfait l'équation. En posant $y=1$, on trouve $f(x) = xf(f(1))$.
                 \\item \\textbf{Synthèse :} Si $f(x) = xf(f(1))$, alors $f(xy) = xyf(f(1))$ et $x\\times f(f(y)) = x\\times f(yf(f(1))) = xyf(f(1))^2$. Donc $f(f(1)) = 1$ ou $0$, donc $f(x) = x$ ou $f(x) = 0$.
             \\end{itemize}
-            \\end{flushleft}
+            \\end{flushleft} #TODO remplacer par un autre exemple
         """, font_size=28, color=Colors.text).next_to(analysis_synthesis_principle, DOWN)
         self.play(Write(analysis_synthesis_example), run_time=Durations.animations)
         self.wait(2)

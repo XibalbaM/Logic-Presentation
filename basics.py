@@ -59,9 +59,9 @@ class Basics(Scene):
             self.wait(Durations.pauses)
         cheatSheet = [
             "Proposition : $P$, $Q$",
-            "Négation : $\\neg P$",
-            "Conjonction : $P \\land Q$",
-            "Disjonction : $P \\lor Q$"
+            "Négation : $\\neg P$ (non)",
+            "Conjonction : $P \\land Q$ (et)",
+            "Disjonction : $P \\lor Q$ (ou)"
         ]
         cheatSheet_texts = VGroup(*[Tex("\\begin{flushleft}" + item + "\\end{flushleft}", font_size=28, color=Colors.text) for item in cheatSheet])
         cheatSheet_texts.arrange(DOWN, aligned_edge=LEFT).to_edge(UP + LEFT)
@@ -72,6 +72,7 @@ class Basics(Scene):
     
     def section_1_examples(self):
         #TODO add counterexamples
+        #TODO vraies notations, pas les memes qu'ensembles
         examples = Tex("""
                    \\begin{itemize}
                     \\item $P$ : \"On est jeudi.\"
@@ -109,6 +110,8 @@ class Basics(Scene):
         self.wait(Durations.pauses)
     
     def section_2_definitions(self):
+        #TODO rendre moins dense
+        #TODO \equiv egalité générique
         definitions = [
             "Égalité \"interne\" ou équivalence : Deux propositions $P$ et $Q$ sont équivalentes, notées $P = Q$ ou $P \\iff Q$, si elles ont la même valeur de vérité. L'objet \" $P = Q$ \" est lui-même une proposition.",
             "Égalité \"externe\" ou définitionnelle : Deux propositions $A$ et $B$ sont égales, notées $A \\equiv B$, si ce n'est en fait qu'une seule proposition. $A \\equiv B$ n'est pas une proposition, car elle est forcément vraie, par définition. On peut alors remplacer $A$ par $B$ partout sans changer la valeur de vérité."
@@ -156,10 +159,10 @@ class Basics(Scene):
         self.wait(Durations.pauses)
         exercises = Tex("""
                         \\begin{flushleft}
-                        Exercice : Donnez des expressions plus simples définitionnellement équivalentes à :
+                        Exercice : Donnez des expressions plus simples à :
                         \\begin{itemize}
-                            \\item $P \\land (Q \\land R)$
-                            \\item $P \\lor (Q \\lor R)$
+                            \\item $P \\land (Q \\land P)$
+                            \\item $P \\lor (Q \\lor P)$
                             \\item $P \\lor \\bot$
                             \\item $P \\land \\top$
                         \\end{itemize}
@@ -188,61 +191,13 @@ class Basics(Scene):
         exercices = Tex("""\\begin{flushleft}
             Deux exercices : simplifiez les expressions suivantes :
             \\begin{itemize}
-            \\item $\\neg(P \\land Q)$
             \\item $\\neg(P \\lor Q)$
+            \\item $\\neg(P \\land Q)$
             \\end{itemize}
         \\end{flushleft}""", font_size=28, color=Colors.text)
         self.play(Write(exercices), run_time=Durations.animations)
         self.wait(Durations.pauses)
         self.play(FadeOut(exercices), run_time=Durations.animations)
-        exercise_one_one = Table(
-            [["$P$", "$Q$", "$P \\land Q$", "$\\neg(P \\land Q)$", "?"],
-             ["V", "V", "?", "?", "?"],
-             ["V", "F", "?", "?", "?"],
-             ["F", "V", "?", "?", "?"],
-             ["F", "F", "?", "?", "?"]],
-            include_outer_lines=True,
-            line_config={"stroke_color": Colors.text},
-            element_to_mobject=lambda x: Tex(x, font_size=28, color=ColorFromTruthValue(x))
-        ).scale(0.7)
-        self.play(Write(exercise_one_one), run_time=Durations.animations)
-        self.wait(Durations.pauses)
-        exercices_one_two = Table(
-            [["$P$", "$Q$", "$P \\land Q$", "$\\neg(P \\land Q)$", "?"],
-             ["V", "V", "V", "?", "?"],
-             ["V", "F", "F", "?", "?"],
-             ["F", "V", "F", "?", "?"],
-             ["F", "F", "F", "?", "?"]],
-            include_outer_lines=True,
-            line_config={"stroke_color": Colors.text},
-            element_to_mobject=lambda x: Tex(x, font_size=28, color=ColorFromTruthValue(x))
-        ).scale(0.7)
-        self.play(Transform(exercise_one_one, exercices_one_two), run_time=Durations.animations)
-        self.wait(Durations.pauses)
-        exercices_one_three = Table(
-            [["$P$", "$Q$", "$P \\land Q$", "$\\neg(P \\land Q)$", "?"],
-             ["V", "V", "V", "F", "?"],
-             ["V", "F", "F", "V", "?"],
-             ["F", "V", "F", "V", "?"],
-             ["F", "F", "F", "V", "?"]],
-            include_outer_lines=True,
-            line_config={"stroke_color": Colors.text},
-            element_to_mobject=lambda x: Tex(x, font_size=28, color=ColorFromTruthValue(x))
-        ).scale(0.7)
-        self.play(Transform(exercise_one_one, exercices_one_three), run_time=Durations.animations)
-        self.wait(Durations.pauses)
-        exercices_one_solution = Table(
-            [["$P$", "$Q$", "$P \\land Q$", "$\\neg(P \\land Q)$", "$\\neg P \\lor \\neg Q$"],
-             ["V", "V", "V", "F", "F"],
-             ["V", "F", "F", "V", "V"],
-             ["F", "V", "F", "V", "V"],
-             ["F", "F", "F", "V", "V"]],
-            include_outer_lines=True,
-            line_config={"stroke_color": Colors.text},
-            element_to_mobject=lambda x: Tex(x, font_size=28, color=ColorFromTruthValue(x))
-        ).scale(0.7)
-        self.play(Transform(exercise_one_one, exercices_one_solution), run_time=Durations.animations)
-        self.wait(Durations.pauses)
         exercise_two_one = Table(
             [["$P$", "$Q$", "$P \\lor Q$", "$\\neg(P \\lor Q)$", "?"],
              ["V", "V", "?", "?", "?"],
@@ -253,7 +208,7 @@ class Basics(Scene):
             line_config={"stroke_color": Colors.text},
             element_to_mobject=lambda x: Tex(x, font_size=28, color=ColorFromTruthValue(x))
         ).scale(0.7)
-        self.play(Transform(exercise_one_one, exercise_two_one), run_time=Durations.animations)
+        self.play(Write(exercise_two_one), run_time=Durations.animations)
         self.wait(Durations.pauses)
         exercices_two_two = Table(
             [["$P$", "$Q$", "$P \\lor Q$", "$\\neg(P \\lor Q)$", "?"],
@@ -265,7 +220,7 @@ class Basics(Scene):
             line_config={"stroke_color": Colors.text},
             element_to_mobject=lambda x: Tex(x, font_size=28, color=ColorFromTruthValue(x))
         ).scale(0.7)
-        self.play(Transform(exercise_one_one, exercices_two_two), run_time=Durations.animations)
+        self.play(Transform(exercise_two_one, exercices_two_two), run_time=Durations.animations)
         self.wait(Durations.pauses)
         exercices_two_three = Table(
             [["$P$", "$Q$", "$P \\lor Q$", "$\\neg(P \\lor Q)$", "?"],
@@ -277,7 +232,7 @@ class Basics(Scene):
             line_config={"stroke_color": Colors.text},
             element_to_mobject=lambda x: Tex(x, font_size=28, color=ColorFromTruthValue(x))
         ).scale(0.7)
-        self.play(Transform(exercise_one_one, exercices_two_three), run_time=Durations.animations)
+        self.play(Transform(exercise_two_one, exercices_two_three), run_time=Durations.animations)
         self.wait(Durations.pauses)
         exercices_two_solution = Table(
             [["$P$", "$Q$", "$P \\lor Q$", "$\\neg(P \\lor Q)$", "$\\neg P \\land \\neg Q$"],
@@ -289,9 +244,57 @@ class Basics(Scene):
             line_config={"stroke_color": Colors.text},
             element_to_mobject=lambda x: Tex(x, font_size=28, color=ColorFromTruthValue(x))
         ).scale(0.7)
-        self.play(Transform(exercise_one_one, exercices_two_solution), run_time=Durations.animations)
+        self.play(Transform(exercise_two_one, exercices_two_solution), run_time=Durations.animations)
         self.wait(Durations.pauses)
-        self.play(FadeOut(exercise_one_one), run_time=Durations.animations)
+        exercise_one_one = Table(
+            [["$P$", "$Q$", "$P \\land Q$", "$\\neg(P \\land Q)$", "?"],
+             ["V", "V", "?", "?", "?"],
+             ["V", "F", "?", "?", "?"],
+             ["F", "V", "?", "?", "?"],
+             ["F", "F", "?", "?", "?"]],
+            include_outer_lines=True,
+            line_config={"stroke_color": Colors.text},
+            element_to_mobject=lambda x: Tex(x, font_size=28, color=ColorFromTruthValue(x))
+        ).scale(0.7)
+        self.play(Transform(exercise_two_one, exercise_one_one), run_time=Durations.animations)
+        self.wait(Durations.pauses)
+        exercices_one_two = Table(
+            [["$P$", "$Q$", "$P \\land Q$", "$\\neg(P \\land Q)$", "?"],
+             ["V", "V", "V", "?", "?"],
+             ["V", "F", "F", "?", "?"],
+             ["F", "V", "F", "?", "?"],
+             ["F", "F", "F", "?", "?"]],
+            include_outer_lines=True,
+            line_config={"stroke_color": Colors.text},
+            element_to_mobject=lambda x: Tex(x, font_size=28, color=ColorFromTruthValue(x))
+        ).scale(0.7)
+        self.play(Transform(exercise_two_one, exercices_one_two), run_time=Durations.animations)
+        self.wait(Durations.pauses)
+        exercices_one_three = Table(
+            [["$P$", "$Q$", "$P \\land Q$", "$\\neg(P \\land Q)$", "?"],
+             ["V", "V", "V", "F", "?"],
+             ["V", "F", "F", "V", "?"],
+             ["F", "V", "F", "V", "?"],
+             ["F", "F", "F", "V", "?"]],
+            include_outer_lines=True,
+            line_config={"stroke_color": Colors.text},
+            element_to_mobject=lambda x: Tex(x, font_size=28, color=ColorFromTruthValue(x))
+        ).scale(0.7)
+        self.play(Transform(exercise_two_one, exercices_one_three), run_time=Durations.animations)
+        self.wait(Durations.pauses)
+        exercices_one_solution = Table(
+            [["$P$", "$Q$", "$P \\land Q$", "$\\neg(P \\land Q)$", "$\\neg P \\lor \\neg Q$"],
+             ["V", "V", "V", "F", "F"],
+             ["V", "F", "F", "V", "V"],
+             ["F", "V", "F", "V", "V"],
+             ["F", "F", "F", "V", "V"]],
+            include_outer_lines=True,
+            line_config={"stroke_color": Colors.text},
+            element_to_mobject=lambda x: Tex(x, font_size=28, color=ColorFromTruthValue(x))
+        ).scale(0.7)
+        self.play(Transform(exercise_two_one, exercices_one_solution), run_time=Durations.animations)
+        self.wait(Durations.pauses)
+        self.play(FadeOut(exercise_two_one), run_time=Durations.animations)
         self.wait(Durations.pauses)
 
     def section_4_definitions(self, right_cheatSheet):
