@@ -9,7 +9,7 @@ class OtherDomains(Scene):
     def construct(self):
         intro(self, "Autres domaines d'application")
 
-        #self.info()
+        self.info()
         self.other_domains()
 
     def info(self):

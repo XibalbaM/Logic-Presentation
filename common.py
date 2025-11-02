@@ -2,8 +2,8 @@ from manim import *
 from types import SimpleNamespace
 
 Colors = SimpleNamespace(
-    text=WHITE,
-    background=BLACK,
+    text=BLACK,
+    background=WHITE,
     true=GREEN,
     false=RED
 )
