@@ -16,7 +16,7 @@ class Intro(Scene):
             "2. Applications en maths",
             "3. Applications dans d'autres domaines",
             "4. Quelques systèmes axiomatiques",
-            "5. Un peu d'histoire",
+            "5. Quelques points qui font débat",
             "6. Théorème d'incomplétude de Gödel"
         ]
         topic_texts = VGroup(*[Text(topic, font_size=32, color=Colors.text) for topic in topics])
