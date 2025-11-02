@@ -113,8 +113,8 @@ class Basics(Scene):
         #TODO rendre moins dense
         #TODO \equiv egalité générique
         definitions = [
-            "Égalité \"interne\" ou équivalence : Deux propositions $P$ et $Q$ sont équivalentes, notées $P = Q$ ou $P \\iff Q$, si elles ont la même valeur de vérité. L'objet \" $P = Q$ \" est lui-même une proposition.",
-            "Égalité \"externe\" ou définitionnelle : Deux propositions $A$ et $B$ sont égales, notées $A \\equiv B$, si ce n'est en fait qu'une seule proposition. $A \\equiv B$ n'est pas une proposition, car elle est forcément vraie, par définition. On peut alors remplacer $A$ par $B$ partout sans changer la valeur de vérité."
+            "Égalité \"interne\" ou équivalence : Deux propositions $P$ et $Q$ sont équivalentes, notées $P = Q$ ou $P \\iff Q$, si elles ont la même valeur de vérité. L'objet \" $P = Q$ \" est lui-même une proposition.", #TODO selon le contexte, = peut être l'égalité définitionnelle dans le méta-langage
+            "Égalité \"externe\" ou définitionnelle : Deux propositions $A$ et $B$ sont égales, notées $A \\equiv B$, si ce n'est en fait qu'une seule proposition. $A \\equiv B$ n'est pas une proposition, car elle est forcément vraie, par définition. On peut alors remplacer $A$ par $B$ partout sans changer la valeur de vérité." #TODO selon le contexte, peut désigner l'égalité de valeur dans le mété-langage
             "Vrai et faux : On note $\\top$ la proposition toujours vraie, et $\\bot$ la proposition toujours fausse."
         ]
         definition_texts = VGroup(*[Tex("\\begin{flushleft}" + defn + "\\end{flushleft}", font_size=28, color=Colors.text) for defn in definitions])
