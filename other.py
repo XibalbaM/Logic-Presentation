@@ -1,7 +1,8 @@
 from manim import *
+from manim_slides import Slide
 from common import *
 
-class OtherDomains(Scene):
+class OtherDomains(Slide):
     """
     1. Informatique
     2. Autres domaines
@@ -16,16 +17,8 @@ class OtherDomains(Scene):
         # Présentation images portes logiques depuis assets/
         title = Text("Applications de la logique en informatique", font_size=48, color=Colors.text).to_edge(UP)
         self.play(Write(title), run_time=Durations.animations)
-        gate_images = ["assets/not.jpeg", "assets/and.png", "assets/or.png", "assets/xor.png", "assets/xor_active.png"]
-        gate_texts = ["Porte NOT", "Porte AND", "Porte OR", "Porte XOR", "Porte XOR (1 1)"]
-        # Montrer chaque porte logique avec son étiquette un par un par slide
-        for img_path, gate_text in zip(gate_images, gate_texts):
-            gate_image = ImageMobject(img_path).scale(1.5)
-            gate_label = Text(gate_text, font_size=36, color=Colors.text).next_to(gate_image, DOWN)
-            gate_group = Group(gate_image, gate_label).move_to(ORIGIN)
-            self.play(FadeIn(gate_group), run_time=Durations.animations)
-            self.wait(Durations.pauses)
-            self.play(FadeOut(gate_group), run_time=Durations.animations)
+        self.wait(Durations.pauses)
+        self.next_slide()
         
         # Scène spéciale pour half adder, montrer aussi addition-colonne-primaire.jpg
         self.play(FadeOut(title), run_time=Durations.animations)
@@ -35,6 +28,7 @@ class OtherDomains(Scene):
         half_adder_group = Group(half_adder_image, addition_image, half_adder_label).move_to(ORIGIN)
         self.play(FadeIn(half_adder_group), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         self.play(FadeOut(half_adder_group), run_time=Durations.animations)
         
         # Affichage d'un "exemple de fin" avec full-cpu.png
@@ -43,6 +37,7 @@ class OtherDomains(Scene):
         full_cpu_group = Group(full_cpu_image, full_cpu_label).move_to(ORIGIN)
         self.play(FadeIn(full_cpu_group), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         self.play(FadeOut(full_cpu_group), run_time=Durations.animations)
 
     def other_domains(self):
@@ -63,5 +58,6 @@ class OtherDomains(Scene):
             description_text = Paragraph(wrap_text(description, 65), font_size=28, color=Colors.text, alignment="center").next_to(domain_text, DOWN)
             self.play(Write(domain_text), Write(description_text), run_time=Durations.animations)
             self.wait(Durations.pauses)
+            self.next_slide()
             self.play(FadeOut(domain_text), FadeOut(description_text), run_time=Durations.animations)
         self.play(FadeOut(title), run_time=Durations.animations)

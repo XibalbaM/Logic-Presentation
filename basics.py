@@ -1,7 +1,8 @@
 from manim import *
+from manim_slides import Slide
 from common import *
 
-class Basics(Scene):
+class Basics(Slide):
     """
     1. Propositions et connecteurs logiques de base
     2. L'égalité
@@ -19,30 +20,37 @@ class Basics(Scene):
         subtitle = definition_subtitle.copy()
         self.play(Write(subtitle), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         self.section_1_definitions()
         self.play(Transform(subtitle, examples_subtitle), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         self.section_1_examples()
 
         section_2_title = Text("L'égalité", font_size=36, color=Colors.text).move_to(UP * 3)
         self.play(Transform(section_1_title, section_2_title), Transform(subtitle, definition_subtitle), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         right_cheatSheet = self.section_2_definitions()
         self.play(Transform(subtitle, examples_subtitle), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         self.section_2_examples()
 
         section_3_title = Text("Tables de vérité", font_size=36, color=Colors.text).move_to(UP * 3)
         self.play(Transform(section_1_title, section_3_title), FadeOut(subtitle), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         self.section_3()
 
         section_4_title = Text("Implications", font_size=36, color=Colors.text).move_to(UP * 3)
         self.play(Transform(section_1_title, section_4_title), Transform(subtitle, definition_subtitle), FadeIn(subtitle), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         self.section_4_definitions(right_cheatSheet)
         self.play(Transform(subtitle, examples_subtitle), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         self.section_4_examples()
 
     def section_1_definitions(self):
@@ -57,6 +65,7 @@ class Basics(Scene):
         for defn_text in definition_texts:
             self.play(Write(defn_text), run_time=Durations.animations)
             self.wait(Durations.pauses)
+        self.next_slide()
         cheatSheet = [
             "Proposition : $P$, $Q$",
             "Négation : $\\neg P$ (non)",
@@ -65,13 +74,13 @@ class Basics(Scene):
         ]
         cheatSheet_texts = VGroup(*[Tex("\\begin{flushleft}" + item + "\\end{flushleft}", font_size=28, color=Colors.text) for item in cheatSheet])
         cheatSheet_texts.arrange(DOWN, aligned_edge=LEFT).to_edge(UP + LEFT)
-        self.play(Transform(definition_texts, cheatSheet_texts))
+        self.play(Transform(definition_texts, cheatSheet_texts), run_time=Durations.animations)
         cheatSheet_box = SurroundingRectangle(cheatSheet_texts, buff=0.1, color=Colors.text)
-        self.play(Write(cheatSheet_box))
+        self.play(Write(cheatSheet_box), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
     
     def section_1_examples(self):
-        #TODO add counterexamples
         #TODO vraies notations, pas les memes qu'ensembles
         examples = Tex("""
                    \\begin{itemize}
@@ -79,10 +88,12 @@ class Basics(Scene):
                     \\item $Q$ : \"Il fait beau.\"
                     \\item $\\neg P \\land Q$ : \"On n'est pas jeudi, mais il fait beau.\"
                     \\item $P \\lor \\neg Q$ : \"On est jeudi ou il ne fait pas beau.\"
+                    \\item \"Cette phrase est fausse.\" n'est pas une proposition.
                    \\end{itemize}""",
                 font_size=28, color=Colors.text)
         self.play(Write(examples), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         other_examples = Tex("""
                         \\begin{itemize}
                            \\item $2 + 2 = 4$
@@ -93,6 +104,7 @@ class Basics(Scene):
                        font_size=28, color=Colors.text)
         self.play(Transform(examples, other_examples), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         other_examples_2 = Tex("""
                         \\begin{flushleft}
                         Soient $A$ et $B$ des propositions quelconques :
@@ -106,44 +118,48 @@ class Basics(Scene):
                           font_size=28, color=Colors.text)
         self.play(Transform(examples, other_examples_2), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         self.play(FadeOut(examples), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
     
     def section_2_definitions(self):
-        #TODO rendre moins dense
         #TODO \equiv egalité générique
         definitions = [
             "Égalité \"interne\" ou équivalence : Deux propositions $P$ et $Q$ sont équivalentes, notées $P = Q$ ou $P \\iff Q$, si elles ont la même valeur de vérité. L'objet \" $P = Q$ \" est lui-même une proposition.", #TODO selon le contexte, = peut être l'égalité définitionnelle dans le méta-langage
-            "Égalité \"externe\" ou définitionnelle : Deux propositions $A$ et $B$ sont égales, notées $A \\equiv B$, si ce n'est en fait qu'une seule proposition. $A \\equiv B$ n'est pas une proposition, car elle est forcément vraie, par définition. On peut alors remplacer $A$ par $B$ partout sans changer la valeur de vérité." #TODO selon le contexte, peut désigner l'égalité de valeur dans le mété-langage
-            "Vrai et faux : On note $\\top$ la proposition toujours vraie, et $\\bot$ la proposition toujours fausse."
+            "Égalité \"externe\" ou définitionnelle : Deux propositions $A$ et $B$ sont égales, notées $A \\equiv B$, c'est une seule et même proposition par définition.", #TODO selon le contexte, peut désigner l'égalité de valeur dans le mété-langage #TODO extentionalité
+            #TODO top et bot, les symboles définis ici sont en fait des symboles "fouretout" utilisés dans pleins de domaines des maths
         ]
         definition_texts = VGroup(*[Tex("\\begin{flushleft}" + defn + "\\end{flushleft}", font_size=28, color=Colors.text) for defn in definitions])
         definition_texts.arrange(DOWN, aligned_edge=LEFT)
         for defn_text in definition_texts:
             self.play(Write(defn_text), run_time=Durations.animations)
             self.wait(Durations.pauses)
+        self.next_slide()
         cheatSheet = [
             "Équivalence : $P \\iff Q$",
-            "Définition : $A \\equiv B$",
-            "Vrai : $\\top$, Faux : $\\bot$",
+            "Définition : $A \\equiv B$"
         ]
         cheatSheet_texts = VGroup(*[Tex("\\begin{flushleft}" + item + "\\end{flushleft}", font_size=28, color=Colors.text) for item in cheatSheet])
         cheatSheet_texts.arrange(DOWN, aligned_edge=RIGHT).to_edge(UP + RIGHT)
-        self.play(Transform(definition_texts, cheatSheet_texts))
+        self.play(Transform(definition_texts, cheatSheet_texts), run_time=Durations.animations)
         cheatSheet_box = SurroundingRectangle(cheatSheet_texts, buff=0.1, color=Colors.text)
-        self.play(Write(cheatSheet_box))
+        self.play(Write(cheatSheet_box), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         return (cheatSheet_texts, cheatSheet_box)
     
     def section_2_examples(self):
         examples = Tex("""
                    \\begin{itemize}
                     \\item Soient $P$ et $Q$ deux propositions. Alors, $P \\iff Q$ est vraie si $P$ et $Q$ sont toutes deux vraies ou toutes deux fausses.
-                    \\item Soient $R$ et $S$ deux propositions. On peut définir la nouvelle proposition $T$ par $T \\equiv R \\land S$. Ainsi, $T$ est vraie si et seulement si $R$ et $S$ sont toutes deux vraies.
+                    \\item Soient $R$ et $S$ deux propositions. On peut définir la nouvelle proposition $T$ par $T \\equiv R \\land S$.
+                    \\item En un sens (mais attention, rigoureusement c'est plus compliqué), $A \\equiv B \\iff (A \\iff B \\text{ est une tautologie})$.
                    \\end{itemize}""",
                 font_size=28, color=Colors.text)
         self.play(Write(examples), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         other_examples = Tex("""
                         \\begin{flushleft}
                         On peut utiliser l'égalité définitionnelle pour donner des identités :
@@ -157,6 +173,7 @@ class Basics(Scene):
                        font_size=28, color=Colors.text)
         self.play(Transform(examples, other_examples), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         exercises = Tex("""
                         \\begin{flushleft}
                         Exercice : Donnez des expressions plus simples à :
@@ -170,8 +187,10 @@ class Basics(Scene):
                        font_size=28, color=Colors.text)
         self.play(Transform(examples, exercises), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         self.play(FadeOut(examples), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
     
     def section_3(self):
         table = Table(
@@ -186,8 +205,10 @@ class Basics(Scene):
         ).scale(0.7)
         self.play(Write(table), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         self.play(FadeOut(table), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         exercices = Tex("""\\begin{flushleft}
             Deux exercices : simplifiez les expressions suivantes :
             \\begin{itemize}
@@ -197,6 +218,7 @@ class Basics(Scene):
         \\end{flushleft}""", font_size=28, color=Colors.text)
         self.play(Write(exercices), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         self.play(FadeOut(exercices), run_time=Durations.animations)
         exercise_two_one = Table(
             [["$P$", "$Q$", "$P \\lor Q$", "$\\neg(P \\lor Q)$", "?"],
@@ -210,6 +232,7 @@ class Basics(Scene):
         ).scale(0.7)
         self.play(Write(exercise_two_one), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         exercices_two_two = Table(
             [["$P$", "$Q$", "$P \\lor Q$", "$\\neg(P \\lor Q)$", "?"],
              ["V", "V", "V", "?", "?"],
@@ -222,6 +245,7 @@ class Basics(Scene):
         ).scale(0.7)
         self.play(Transform(exercise_two_one, exercices_two_two), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         exercices_two_three = Table(
             [["$P$", "$Q$", "$P \\lor Q$", "$\\neg(P \\lor Q)$", "?"],
              ["V", "V", "V", "F", "?"],
@@ -234,6 +258,7 @@ class Basics(Scene):
         ).scale(0.7)
         self.play(Transform(exercise_two_one, exercices_two_three), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         exercices_two_solution = Table(
             [["$P$", "$Q$", "$P \\lor Q$", "$\\neg(P \\lor Q)$", "$\\neg P \\land \\neg Q$"],
              ["V", "V", "V", "F", "F"],
@@ -246,6 +271,7 @@ class Basics(Scene):
         ).scale(0.7)
         self.play(Transform(exercise_two_one, exercices_two_solution), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         exercise_one_one = Table(
             [["$P$", "$Q$", "$P \\land Q$", "$\\neg(P \\land Q)$", "?"],
              ["V", "V", "?", "?", "?"],
@@ -258,6 +284,7 @@ class Basics(Scene):
         ).scale(0.7)
         self.play(Transform(exercise_two_one, exercise_one_one), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         exercices_one_two = Table(
             [["$P$", "$Q$", "$P \\land Q$", "$\\neg(P \\land Q)$", "?"],
              ["V", "V", "V", "?", "?"],
@@ -270,6 +297,7 @@ class Basics(Scene):
         ).scale(0.7)
         self.play(Transform(exercise_two_one, exercices_one_two), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         exercices_one_three = Table(
             [["$P$", "$Q$", "$P \\land Q$", "$\\neg(P \\land Q)$", "?"],
              ["V", "V", "V", "F", "?"],
@@ -282,6 +310,7 @@ class Basics(Scene):
         ).scale(0.7)
         self.play(Transform(exercise_two_one, exercices_one_three), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         exercices_one_solution = Table(
             [["$P$", "$Q$", "$P \\land Q$", "$\\neg(P \\land Q)$", "$\\neg P \\lor \\neg Q$"],
              ["V", "V", "V", "F", "F"],
@@ -294,11 +323,13 @@ class Basics(Scene):
         ).scale(0.7)
         self.play(Transform(exercise_two_one, exercices_one_solution), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         self.play(FadeOut(exercise_two_one), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
 
     def section_4_definitions(self, right_cheatSheet):
-        definitions = [
+        definitions = [ #TODO conditions necessaires et suffisantes
             "Implication : L'implication entre deux propositions $P$ et $Q$, notée $P \\implies Q$, est vraie si et seulement si soit $P$ est fausse, soit $Q$ est vraie (ou les deux).",
             "Nouvelle définition de l'équivalence : Deux propositions $P$ et $Q$ sont équivalentes, notées $P \\iff Q$, si les deux implications $P \\implies Q$ et $Q \\implies P$ sont vraies."
         ]
@@ -307,6 +338,7 @@ class Basics(Scene):
         for defn_text in definition_texts:
             self.play(Write(defn_text), run_time=Durations.animations)
             self.wait(Durations.pauses)
+        self.next_slide()
         newCheatSheetElements = [
             "Implication : $P \\implies Q$"
         ]
@@ -314,8 +346,9 @@ class Basics(Scene):
         newCheatSheet_texts = VGroup(*[Tex("\\begin{flushleft}" + item + "\\end{flushleft}", font_size=28, color=Colors.text) for item in newCheatSheetElements])
         newCheatSheet = oldCheatSheet.add(newCheatSheet_texts)
         newCheatSheet.arrange(DOWN, aligned_edge=RIGHT).to_edge(UP + RIGHT)
-        self.play(Transform(definition_texts, newCheatSheet_texts), Transform(oldCheatSheetBox, SurroundingRectangle(newCheatSheet, buff=0.1, color=Colors.text)))
+        self.play(Transform(definition_texts, newCheatSheet_texts), Transform(oldCheatSheetBox, SurroundingRectangle(newCheatSheet, buff=0.1, color=Colors.text)), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
 
     def section_4_examples(self):
         # On construit la table de vérité de l'implication (ligne par ligne)
@@ -331,6 +364,7 @@ class Basics(Scene):
         ).scale(0.7)
         self.play(Write(implication_one), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         implication_two = Table(
             [["$P$", "$Q$", "$P \\implies Q$"],
                 ["V", "V", "V"],
@@ -343,6 +377,7 @@ class Basics(Scene):
         ).scale(0.7)
         self.play(Transform(implication_one, implication_two), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         implication_three = Table(
             [["$P$", "$Q$", "$P \\implies Q$"],
                 ["V", "V", "V"],
@@ -355,6 +390,7 @@ class Basics(Scene):
         ).scale(0.7)
         self.play(Transform(implication_one, implication_three), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         implication_four = Table(
             [["$P$", "$Q$", "$P \\implies Q$"],
                 ["V", "V", "V"],
@@ -367,6 +403,7 @@ class Basics(Scene):
         ).scale(0.7)
         self.play(Transform(implication_one, implication_four), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         implication_five = Table(
             [["$P$", "$Q$", "$P \\implies Q$"],
                 ["V", "V", "V"],
@@ -379,6 +416,7 @@ class Basics(Scene):
         ).scale(0.7)
         self.play(Transform(implication_one, implication_five), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         # On remarque que l'implication est équivalente à ¬P ∨ Q
         implication_six = Table(
             [["$P$", "$Q$", "$P \\implies Q$", "$\\neg P \\lor Q$"],
@@ -392,8 +430,10 @@ class Basics(Scene):
         ).scale(0.7)
         self.play(Transform(implication_one, implication_six), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         self.play(FadeOut(implication_one), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         # On montre que A \iff B \equiv (A \implies B) \land (B \implies A) (étape par étape)
         iff_one = Table(
             [["$A$", "$B$", "$A \\implies B$", "$B \\implies A$", "$A \\iff B$"],
@@ -407,6 +447,7 @@ class Basics(Scene):
         ).scale(0.7)
         self.play(Write(iff_one), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         iff_two = Table(
             [["$A$", "$B$", "$A \\implies B$", "$B \\implies A$", "$A \\iff B$"],
                 ["V", "V", "V", "V", "?"],
@@ -419,6 +460,7 @@ class Basics(Scene):
         ).scale(0.7)
         self.play(Transform(iff_one, iff_two), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         iff_three = Table(
             [["$A$", "$B$", "$A \\implies B$", "$B \\implies A$", "$A \\iff B$"],
                 ["V", "V", "V", "V", "V"],
@@ -431,8 +473,10 @@ class Basics(Scene):
         ).scale(0.7)
         self.play(Transform(iff_one, iff_three), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         self.play(FadeOut(iff_one), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         # On montre que A \implies B \equiv \neg B \implies \neg A (étape par étape)
         contrapositive_one = Table(
             [["$A$", "$B$", "$A \\implies B$", "$\\neg B \\implies \\neg A$"],
@@ -446,6 +490,7 @@ class Basics(Scene):
         ).scale(0.7)
         self.play(Write(contrapositive_one), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         contrapositive_two = Table(
             [["$A$", "$B$", "$A \\implies B$", "$\\neg B \\implies \\neg A$"],
                 ["V", "V", "V", "?"],
@@ -458,6 +503,7 @@ class Basics(Scene):
         ).scale(0.7)
         self.play(Transform(contrapositive_one, contrapositive_two), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         contrapositive_three = Table(
             [["$A$", "$B$", "$A \\implies B$", "$\\neg B \\implies \\neg A$"],
                 ["V", "V", "V", "V"],
@@ -470,5 +516,7 @@ class Basics(Scene):
         ).scale(0.7)
         self.play(Transform(contrapositive_one, contrapositive_three), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         self.play(FadeOut(contrapositive_one), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()

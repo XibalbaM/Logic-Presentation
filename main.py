@@ -1,4 +1,3 @@
-from manim import *
 from intro import Intro as IntroA
 from basics import Basics as BasicsA
 from maths import Maths as MathsA

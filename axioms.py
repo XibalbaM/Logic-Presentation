@@ -1,7 +1,8 @@
 from manim import *
+from manim_slides import Slide
 from common import *
 
-class Axioms(Scene):
+class Axioms(Slide):
     """
     1. Axiomes de Peano
     2. Axiomes d'Euclide
@@ -18,6 +19,7 @@ class Axioms(Scene):
         title.to_edge(UP)
         self.play(Write(title), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         
         # List of Peano axioms
         axioms = [
@@ -40,6 +42,7 @@ class Axioms(Scene):
         
         self.play(Write(axiom_group), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         
         # Fade out axioms
         self.play(FadeOut(axiom_group), run_time=Durations.animations)
@@ -49,6 +52,7 @@ class Axioms(Scene):
         examples_title.next_to(title, DOWN, buff=0.5)
         self.play(Write(examples_title), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         
         # Example 1: Building numbers
         ex1_title = Text("Construction des nombres :", font_size=30, color=Colors.text)
@@ -66,8 +70,10 @@ class Axioms(Scene):
         
         self.play(Write(numbers), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         self.play(FadeOut(ex1_title),FadeOut(numbers), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         
         # Example 2: Defining addition via recursion
         ex2_title = Text("Définition de l'addition :", font_size=30, color=Colors.text)
@@ -86,12 +92,14 @@ class Axioms(Scene):
         addition_def.next_to(ex2_title, DOWN, buff=0.5)
         self.play(Write(addition_def), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
 
         # Last example: Proof that 1 + 1 = 2
         ex3_title = Text("Preuve que 1 + 1 = 2 :", font_size=30, color=Colors.text)
         ex3_title.next_to(addition_def, DOWN, buff=0.7)
         self.play(Write(ex3_title), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         # Create a LaTeX aligned equation block
         proof_steps = MathTex(
             r"1 + 1 &= S(0) + S(0) \\",
@@ -104,6 +112,7 @@ class Axioms(Scene):
         proof_steps.next_to(ex3_title, DOWN, buff=0.5)
         self.play(Write(proof_steps), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         # Fade out everything
         self.play(
             FadeOut(title),
@@ -121,6 +130,7 @@ class Axioms(Scene):
         title.to_edge(UP)
         self.play(Write(title), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         
         # List of Euclid's axioms (postulates)
         axioms = [
@@ -142,44 +152,10 @@ class Axioms(Scene):
         axiom_group.next_to(title, DOWN, buff=0.8)
         
         self.play(Write(axiom_group), run_time=Durations.animations * 2)
-        self.wait(Durations.pauses * 1.5)
+        self.wait(Durations.pauses)
+        self.next_slide()
         
         # Fade out axioms
         self.play(FadeOut(axiom_group), run_time=Durations.animations)
-        
-        # Examples
-        examples_title = Text("Exemples", font_size=36, color=Colors.text)
-        examples_title.next_to(title, DOWN, buff=0.5)
-        self.play(Write(examples_title), run_time=Durations.animations)
-        self.wait(Durations.pauses * 0.5)
-        
-        # Example 1: Deux droites parallèles à une même droite sont parallèles entre elles
-        ex1_title = Text("Exemple 1 : Droites parallèles", font_size=30, color=Colors.text)
-        ex1_title.next_to(examples_title, DOWN, buff=0.7)
-        self.play(Write(ex1_title), run_time=Durations.animations)
         self.wait(Durations.pauses)
-        #TODO faire un dessin pour plus de simplicité (si elles n'étaient pas parallèles, elles se coupaient en un point, ce qui contredirait l'axiome des parallèles)
-        self.play(FadeOut(ex1_title), run_time=Durations.animations)
-        self.wait(Durations.pauses)
-
-        # Exemple 2: Les angles alternes-internes sont égaux
-        ex2_title = Text("Exemple 2 : Angles alternes-internes", font_size=30, color=Colors.text)
-        ex2_title.next_to(examples_title, DOWN, buff=0.7)
-        self.play(Write(ex2_title), run_time=Durations.animations)
-        self.wait(Durations.pauses)
-        ex2_extra = Text(wrap_text("Le cinquième axiome est équivalent à : « Si une droite coupe deux droites et que les angles intérieurs du même côté ont une somme inférieure à deux angles droits, alors ces deux droites se rencontrent du côté où la somme est inférieure à deux droits. » (on n'a pas le temps de le montrer)", 65), font_size=28, color=Colors.text)
-        ex2_extra.next_to(ex2_title, DOWN, buff=0.5)
-        self.play(Write(ex2_extra), run_time=Durations.animations)
-        self.wait(Durations.pauses)
-        #TODO faire un dessin pour plus de simplicité (on suppose que l'un des angles est plus grand que l'autre, alors on contredit cette formulation de l'axiome des parallèles)
-        self.play(FadeOut(ex2_title), FadeOut(ex2_extra), run_time=Durations.animations)
-        self.wait(Durations.pauses)
-
-        # Exemple 3: La somme des angles d'un triangle est égale à 180°
-        ex3_title = Text("Exemple 3 : Somme des angles d'un triangle", font_size=30, color=Colors.text)
-        ex3_title.next_to(examples_title, DOWN, buff=0.7)
-        self.play(Write(ex3_title), run_time=Durations.animations)
-        self.wait(Durations.pauses)
-        #TODO faire un dessin pour plus de simplicité (en utilisant l'axiome des parallèles et les angles alternes-internes)
-        self.play(FadeOut(ex3_title), FadeOut(examples_title), FadeOut(title), run_time=Durations.animations)
-        self.wait(Durations.pauses)
+        self.next_slide()

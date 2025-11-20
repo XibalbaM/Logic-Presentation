@@ -1,4 +1,5 @@
 from manim import *
+from manim_slides import Slide
 from types import SimpleNamespace
 
 Colors = SimpleNamespace(
@@ -9,7 +10,7 @@ Colors = SimpleNamespace(
 )
 
 Durations = SimpleNamespace(
-    animations=1,
+    animations=0.5,
     pauses=2
 )
 
@@ -21,7 +22,7 @@ def ColorFromTruthValue(value: str):
     else:
         return Colors.text
     
-def intro(scene: Scene, title_text: str):
+def intro(scene: Slide, title_text: str):
     title = Text(title_text, font_size=48, color=Colors.text)
     scene.play(Write(title), run_time=Durations.animations)
     scene.wait(Durations.pauses)

@@ -1,7 +1,8 @@
 from manim import *
+from manim_slides import Slide
 from common import *
 
-class Godel(Scene):
+class Godel(Slide):
     """
     1. Énoncé du théorème
     2. Idée de la preuve
@@ -19,6 +20,7 @@ class Godel(Scene):
         title.to_edge(UP)
         self.play(Write(title), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
 
         # Statement (First incompleteness theorem)
         lines = [
@@ -37,6 +39,7 @@ class Godel(Scene):
 
         self.play(Write(statement_group), run_time=Durations.animations * 2)
         self.wait(Durations.pauses)
+        self.next_slide()
 
         # Optional compact symbolic view
         symbolic = MathTex(r"\exists G:\ T\ \text{cohérent} \Rightarrow T \nvdash G \ \wedge\ T \nvdash \lnot G",
@@ -44,6 +47,7 @@ class Godel(Scene):
         symbolic.next_to(statement_group, DOWN, buff=0.6)
         self.play(Write(symbolic), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
 
         # Fade out statement
         self.play(FadeOut(statement_group), FadeOut(symbolic), run_time=Durations.animations)
@@ -52,7 +56,8 @@ class Godel(Scene):
         examples_title = Text("Exemples", font_size=36, color=Colors.text)
         examples_title.next_to(title, DOWN, buff=0.6)
         self.play(Write(examples_title), run_time=Durations.animations)
-        self.wait(Durations.pauses * 0.5)
+        self.wait(Durations.pauses)
+        self.next_slide()
 
         # Example 1: An inconsistent system that quickly leads to contradiction
         ex1_title = Text("Exemple 1 : Système incohérent", font_size=30, color=Colors.text)
@@ -67,8 +72,10 @@ class Godel(Scene):
 
         self.play(Write(ex1_lines), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         self.play(FadeOut(ex1_title), FadeOut(ex1_lines), run_time=Durations.animations)
-        self.wait(Durations.pauses * 0.5)
+        self.wait(Durations.pauses)
+        self.next_slide()
 
         # Example 2: A consistent but incomplete system (e.g., Peano Arithmetic)
         ex2_title = Text("Exemple 2 : Système cohérent mais incomplet", font_size=30, color=Colors.text)
@@ -89,6 +96,7 @@ class Godel(Scene):
         self.play(Write(ex2_lines), run_time=Durations.animations)
         self.play(Write(g_sentence), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
 
         # Fade out everything for this section
         self.play(
@@ -100,6 +108,7 @@ class Godel(Scene):
             run_time=Durations.animations
         )
         self.wait(Durations.pauses)
+        self.next_slide()
 
     def proof_idea(self): #TODO review
         # Title
@@ -107,6 +116,7 @@ class Godel(Scene):
         title.to_edge(UP)
         self.play(Write(title), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
 
         # Step 1: Arithmétisation (Gödel numbering)
         step1_title = Text("1) Arithmétisation du langage", font_size=30, color=Colors.text)
@@ -125,8 +135,10 @@ class Godel(Scene):
         self.play(Write(step1_lines), run_time=Durations.animations)
         self.play(Write(code_eq), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         self.play(FadeOut(step1_title), FadeOut(step1_lines), FadeOut(code_eq), run_time=Durations.animations)
-        self.wait(Durations.pauses * 0.5)
+        self.wait(Durations.pauses)
+        self.next_slide()
 
         # Step 2: Provability predicate
         step2_title = Text("2) Provabilité arithmétisée", font_size=30, color=Colors.text)
@@ -145,8 +157,10 @@ class Godel(Scene):
         self.play(Write(step2_lines), run_time=Durations.animations)
         self.play(Write(prov_tex), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         self.play(FadeOut(step2_title), FadeOut(step2_lines), FadeOut(prov_tex), run_time=Durations.animations)
-        self.wait(Durations.pauses * 0.5)
+        self.wait(Durations.pauses)
+        self.next_slide()
 
         # Step 3: Diagonalisation (self-reference)
         step3_title = Text("3) Lemme de diagonalisation", font_size=30, color=Colors.text)
@@ -165,8 +179,10 @@ class Godel(Scene):
         self.play(Write(step3_lines), run_time=Durations.animations)
         self.play(Write(g_equiv), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         self.play(FadeOut(step3_title), FadeOut(step3_lines), FadeOut(g_equiv), run_time=Durations.animations)
-        self.wait(Durations.pauses * 0.5)
+        self.wait(Durations.pauses)
+        self.next_slide()
 
         # Step 4: Conséquences (incomplétude)
         step4_title = Text("4) Conséquences", font_size=30, color=Colors.text)
@@ -187,6 +203,7 @@ class Godel(Scene):
         self.play(Write(step4_lines), run_time=Durations.animations)
         self.play(Write(concl_tex), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
 
         # Fade out all
         self.play(
@@ -197,3 +214,4 @@ class Godel(Scene):
             run_time=Durations.animations
         )
         self.wait(Durations.pauses)
+        self.next_slide()

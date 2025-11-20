@@ -1,7 +1,8 @@
 from manim import *
+from manim_slides import Slide
 from common import *
 
-class Debated(Scene):
+class Debated(Slide):
     """
     2. Logique intuitionniste vs classique
     3. Preuves constructives vs non-constructives
@@ -21,12 +22,14 @@ class Debated(Scene):
         title.to_edge(UP)
         self.play(Write(title), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         
         # Classical logic section
         classical_title = Text("Logique classique", font_size=36, color=Colors.text)
         classical_title.next_to(title, DOWN, buff=0.5)
         self.play(Write(classical_title), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         
         classical_principles = [
             "• Une proposition est vraie ou fausse",
@@ -45,6 +48,7 @@ class Debated(Scene):
         
         self.play(Write(classical_group), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         
         self.play(FadeOut(classical_group), FadeOut(classical_title), run_time=Durations.animations)
         
@@ -53,6 +57,7 @@ class Debated(Scene):
         intuitionistic_title.next_to(title, DOWN, buff=0.5)
         self.play(Write(intuitionistic_title), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         
         intuitionistic_principles = [
             "• Rejette le tiers exclu",
@@ -71,6 +76,7 @@ class Debated(Scene):
         
         self.play(Write(intuitionistic_group), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         
         self.play(FadeOut(intuitionistic_group), FadeOut(intuitionistic_title), run_time=Durations.animations)
         
@@ -79,12 +85,14 @@ class Debated(Scene):
         examples_title.next_to(title, DOWN, buff=0.5)
         self.play(Write(examples_title), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         
         # Example: Proof that sqrt(2) is irrational
         ex_title = Text("Preuve de l'irrationalité de √2 :", font_size=30, color=Colors.text)
         ex_title.next_to(examples_title, DOWN, buff=0.5)
         self.play(Write(ex_title), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         
         # Classical approach
         classical_approach = Text("Approche classique (par l'absurde) :", font_size=28, color=Colors.text)
@@ -99,6 +107,7 @@ class Debated(Scene):
         classical_proof.next_to(classical_approach, DOWN, buff=0.3)
         self.play(Write(classical_proof), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         
         self.play(FadeOut(classical_approach), FadeOut(classical_proof), run_time=Durations.animations)
         
@@ -115,6 +124,7 @@ class Debated(Scene):
         intuitionistic_explanation.next_to(intuitionistic_remark, DOWN, buff=0.3)
         self.play(Write(intuitionistic_explanation), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         
         # Fade out everything
         self.play(
@@ -132,12 +142,14 @@ class Debated(Scene):
         title.to_edge(UP)
         self.play(Write(title), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         
         # Non-constructive proofs section
         nonconstructive_title = Text("Preuves non-constructives", font_size=36, color=Colors.text)
         nonconstructive_title.next_to(title, DOWN, buff=0.5)
         self.play(Write(nonconstructive_title), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         
         nonconstructive_desc = Text(
             wrap_text("Prouvent l'existence d'un objet sans le construire explicitement.\nUtilisent souvent le raisonnement par l'absurde.", 60),
@@ -147,6 +159,7 @@ class Debated(Scene):
         nonconstructive_desc.next_to(nonconstructive_title, DOWN, buff=0.5)
         self.play(Write(nonconstructive_desc), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         
         self.play(FadeOut(nonconstructive_desc), FadeOut(nonconstructive_title), run_time=Durations.animations)
         
@@ -155,6 +168,7 @@ class Debated(Scene):
         constructive_title.next_to(title, DOWN, buff=0.5)
         self.play(Write(constructive_title), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         
         constructive_desc = Text(
             wrap_text("Construisent explicitement l'objet dont on prouve l'existence.\nFournissent un algorithme ou une méthode de construction.", 60),
@@ -164,6 +178,7 @@ class Debated(Scene):
         constructive_desc.next_to(constructive_title, DOWN, buff=0.5)
         self.play(Write(constructive_desc), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         
         self.play(FadeOut(constructive_desc), FadeOut(constructive_title), run_time=Durations.animations)
         
@@ -172,12 +187,14 @@ class Debated(Scene):
         examples_title.next_to(title, DOWN, buff=0.5)
         self.play(Write(examples_title), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         
         # Example 1: Non-constructive proof
         ex1_title = Text("Exemple non-constructif :", font_size=30, color=Colors.text)
         ex1_title.next_to(examples_title, DOWN, buff=0.5)
         self.play(Write(ex1_title), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         
         ex1_statement = Text(
             wrap_text("Il existe un nombre premier supérieur à n pour tout n ∈ ℕ.", 60),
@@ -187,6 +204,7 @@ class Debated(Scene):
         ex1_statement.next_to(ex1_title, DOWN, buff=0.4)
         self.play(Write(ex1_statement), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         
         ex1_proof = Text(
             wrap_text("Preuve :\nIl existe une infinité de nombres premiers. On peut séparer tous les entiers en deux groupes : \nceux qui sont plus petits ou égaux à n et ceux qui sont plus grands que n.\nComme il y en a une infinité, et comme le premier groupe est finit, il y en a forcément un dans le deuxième. CQFD.", 55),
@@ -196,6 +214,7 @@ class Debated(Scene):
         ex1_proof.next_to(ex1_statement, DOWN, buff=0.4)
         self.play(Write(ex1_proof), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         
         self.play(
             FadeOut(ex1_title),
@@ -209,6 +228,7 @@ class Debated(Scene):
         ex2_title.next_to(examples_title, DOWN, buff=0.5)
         self.play(Write(ex2_title), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         
         ex2_statement = Text(
             wrap_text("Il existe un nombre premier supérieur à 100.", 60),
@@ -218,6 +238,7 @@ class Debated(Scene):
         ex2_statement.next_to(ex2_title, DOWN, buff=0.4)
         self.play(Write(ex2_statement), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         
         ex2_proof = Text(
             wrap_text("Preuve : 101 est premier.\nVérifions : 101 n'est divisible ni par 2, 3, 5, 7.\nComme √101 < 11, on a terminé.\nDonc 101 est un nombre premier > 100.", 55),
@@ -227,6 +248,7 @@ class Debated(Scene):
         ex2_proof.next_to(ex2_statement, DOWN, buff=0.4)
         self.play(Write(ex2_proof), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         
         # Fade out everything
         self.play(
@@ -244,12 +266,14 @@ class Debated(Scene):
         title.to_edge(UP)
         self.play(Write(title), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
 
         # Statement
         stmt_title = Text("Énoncé", font_size=36, color=Colors.text)
         stmt_title.next_to(title, DOWN, buff=0.5)
         self.play(Write(stmt_title), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
 
         stmt_text = Text(
             wrap_text(
@@ -262,14 +286,17 @@ class Debated(Scene):
         stmt_text.next_to(stmt_title, DOWN, buff=0.4)
         self.play(Write(stmt_text), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         self.play(FadeOut(stmt_text), FadeOut(stmt_title), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
 
         # A few equivalents/consequences
         cons_title = Text("Conséquences et énoncés équivalents", font_size=34, color=Colors.text)
         cons_title.next_to(title, DOWN, buff=0.5)
         self.play(Write(cons_title), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
 
         consequences = [
             "• Théorème du bon ordre (tout ensemble peut être bien ordonné)",
@@ -283,6 +310,7 @@ class Debated(Scene):
         cons_group.next_to(cons_title, DOWN, buff=0.4)
         self.play(Write(cons_group), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
 
         self.play(FadeOut(cons_group), FadeOut(cons_title), run_time=Durations.animations)
 
@@ -291,6 +319,7 @@ class Debated(Scene):
         bt_title.next_to(title, DOWN, buff=0.5)
         self.play(Write(bt_title), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
 
         bt_desc = Text(
                 wrap_text(
@@ -303,6 +332,7 @@ class Debated(Scene):
         bt_desc.next_to(bt_title, DOWN, buff=0.4)
         self.play(Write(bt_desc), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
 
         bt_notes = Text(
                 wrap_text(
@@ -315,14 +345,17 @@ class Debated(Scene):
         bt_notes.next_to(bt_desc, DOWN, buff=0.35)
         self.play(Write(bt_notes), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
 
         self.play(FadeOut(bt_title), FadeOut(bt_desc), FadeOut(bt_notes), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
 
         # Visual illustration of Banach-Tarski
         image = ImageMobject("assets/Banach-Tarski_Paradox.png")
         self.play(FadeIn(image), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
         
         # Fade out everything
         self.play(FadeOut(image), FadeOut(title), run_time=Durations.animations)

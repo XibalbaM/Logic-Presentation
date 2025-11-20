@@ -1,8 +1,9 @@
 from manim import *
+from manim_slides import Slide
 from common import *
 
 
-class Outro(Scene):
+class Outro(Slide):
     def construct(self):
         thanks_text = "Merci pour votre attention !"
         thanks = Text(thanks_text, font_size=48, color=Colors.text)
@@ -11,3 +12,4 @@ class Outro(Scene):
         sub.next_to(thanks, DOWN, buff=0.5)
         self.play(Write(thanks), Write(sub), run_time=Durations.animations)
         self.wait(Durations.pauses)
+        self.next_slide()
